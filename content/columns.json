@@ -1,0 +1,11 @@
+[
+  {"name":"id","title":"ID","breakpoints":"xs sm","type":"number","style":{"width":80,"maxWidth":80}},
+  {"name":"actividad","title":"Actividad"},
+  {"name":"predecesor","title":"Predecesor"},
+  {"name":"sucesor","title":"Sucesor","visible":false,"filterable":false},
+  {"name":"duracion","title":"Duración"},
+  {"name":"duracion_choque","title":"Duración Choque","breakpoints":"xs sm","style":{"maxWidth":200,"overflow":"hidden","textOverflow":"ellipsis","wordBreak":"keep-all","whiteSpace":"nowrap"}},
+  {"name":"costo_normal","title":"Costo Normal","breakpoints":"xs sm","style":{"maxWidth":200,"overflow":"hidden","textOverflow":"ellipsis","wordBreak":"keep-all","whiteSpace":"nowrap"}},
+  {"name":"costo_choque","title":"Costo Choque","breakpoints":"xs sm","style":{"maxWidth":200,"overflow":"hidden","textOverflow":"ellipsis","wordBreak":"keep-all","whiteSpace":"nowrap"}},
+  {"name":"costo_choque_periodo","title":"Costo Choque Periodo","breakpoints":"xs sm","style":{"maxWidth":200,"overflow":"hidden","textOverflow":"ellipsis","wordBreak":"keep-all","whiteSpace":"nowrap"}}
+]

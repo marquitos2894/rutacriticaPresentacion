@@ -1,0 +1,18 @@
+[
+{"id":1,"actividad":"A","predecesor":"ninguno","sucesor":"","duracion":4,"duracion_choque":1,"costo_normal":100,"costo_choque":400,"costo_choque_periodo":100},
+{"id":2,"actividad":"B","predecesor":"A","sucesor":"","duracion":6,"duracion_choque":3,"costo_normal":260,"costo_choque":545,"costo_choque_periodo":95},
+{"id":3,"actividad":"C","predecesor":"A","sucesor":"","duracion":4,"duracion_choque":2,"costo_normal":200,"costo_choque":400,"costo_choque_periodo":100},
+{"id":4,"actividad":"D","predecesor":"B","sucesor":"","duracion":4,"duracion_choque":3,"costo_normal":350,"costo_choque":480,"costo_choque_periodo":130},
+{"id":5,"actividad":"E","predecesor":"B","sucesor":"","duracion":5,"duracion_choque":4,"costo_normal":100,"costo_choque":250,"costo_choque_periodo":150},
+{"id":6,"actividad":"F","predecesor":"B,C","sucesor":"","duracion":3,"duracion_choque":2,"costo_normal":400,"costo_choque":800,"costo_choque_periodo":400},
+{"id":7,"actividad":"G","predecesor":"C","sucesor":"","duracion":4,"duracion_choque":3,"costo_normal":150,"costo_choque":350,"costo_choque_periodo":200},
+{"id":8,"actividad":"H","predecesor":"C","sucesor":"","duracion":4,"duracion_choque":2,"costo_normal":250,"costo_choque":500,"costo_choque_periodo":125},
+{"id":9,"actividad":"I","predecesor":"D,E","sucesor":"","duracion":4,"duracion_choque":1,"costo_normal":300,"costo_choque":570,"costo_choque_periodo":90},
+{"id":10,"actividad":"J","predecesor":"F","sucesor":"","duracion":4,"duracion_choque":2,"costo_normal":200,"costo_choque":430,"costo_choque_periodo":115},
+{"id":11,"actividad":"K","predecesor":"G,H","sucesor":"","duracion":4,"duracion_choque":2,"costo_normal":100,"costo_choque":340,"costo_choque_periodo":120},
+{"id":12,"actividad":"L","predecesor":"I,J","sucesor":"","duracion":5,"duracion_choque":4,"costo_normal":150,"costo_choque":300,"costo_choque_periodo":150},
+{"id":13,"actividad":"M","predecesor":"J,K","sucesor":"","duracion":3,"duracion_choque":2,"costo_normal":250,"costo_choque":500,"costo_choque_periodo":250},
+{"id":14,"actividad":"N","predecesor":"K","sucesor":"","duracion":4,"duracion_choque":3,"costo_normal":100,"costo_choque":210,"costo_choque_periodo":110},
+{"id":15,"actividad":"Ñ","predecesor":"L,M,N","sucesor":"","duracion":1,"duracion_choque":1,"costo_normal":100,"costo_choque":100,"costo_choque_periodo":0},
+{"id":16,"actividad":"  ","predecesor":"","sucesor":"","duracion":"","duracion_choque":"","costo_normal":"","costo_choque":"","costo_choque_periodo":""}
+]

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>IO</title>
+	<link href="assets/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="assets/footable/css/footable.bootstrap.css" rel="stylesheet">
+	<link href="assets/footable/css/footable.bootstrap.min.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+<div class="alert titulo" role="alert" style="text-align: center;font-weight: bold;">
+	Investigacion de Operaciones II
+</div>
+
+<!-- Table Markup -->
+<table id="tblDatos" class="table" data-paging="true" data-filtering="true" data-sorting="true" data-editing="true" data-state="true"></table>
+
+<!-- Editing Modal Markup -->
+<div class="modal fade" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="editor-title">
+	<style scoped>
+		/* provides a red astrix to denote required fields - this should be included in common stylesheet */
+		.form-group.required .control-label:after {
+			content:"*";
+			color:red;
+			margin-left: 4px;
+		}
+		/*add*/
+		tr.footable-header, .titulo{
+			background-color: #337ab7;
+			color: white;
+			font-weight: bold;
+		}
+	</style>
+	<div class="modal-dialog col-xs-12" role="document">
+		<form class="modal-content form-horizontal" id="editor">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<h4 class="modal-title" id="editor-title">Agregar Actividad</h4>
+			</div>
+			<div class="modal-body">
+				<input type="number" id="id" name="id" class="hidden"/>
+				<div class="form-group required">
+					<label for="actividad" class="col-sm-3 control-label">Actividad</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="actividad" name="actividad" placeholder="Actividad" required>
+					</div>
+				</div>
+				<div class="form-group required">
+					<label for="predecesor" class="col-sm-3 control-label">Predecesor</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="predecesor" name="predecesor" placeholder="Predecesor" required>
+					</div>
+				</div>
+				<div class="form-group required">
+					<label for="duracion" class="col-sm-3 control-label">Duración</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="duracion" name="duracion" placeholder="Duración" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="duracion_choque" class="col-sm-3 control-label">Duración Choque</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="duracion_choque" name="duracion_choque" placeholder="Duración Choque">
+					</div>
+				</div>
+				<div class="form-group required">
+					<label for="costo_normal" class="col-sm-3 control-label">Costo Normal</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="costo_normal" name="costo_normal" placeholder="Costo Normal" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="costo_choque" class="col-sm-3 control-label">Costo Choque</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="costo_choque" name="costo_choque" placeholder="Costo Choque">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="costo_choque_periodo" class="col-sm-3 control-label">Costo Choque Periodo</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="costo_choque_periodo" name="costo_choque_periodo" placeholder="Costo Choque">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Guardar cambios</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+	<div style="text-align: center;">		
+		<!-- agregado Cesar-->
+		<button id="btnProcesar" class="btn btn-primary">Procesar</button>
+	</div>	
+
+<div id="resultado" style="display: none;">
+	
+</div>
+
+
+<script src="assets/jquery/1.11.3/js/jquery.min.js"></script>
+<script src="assets/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="assets/footable/js/footable.js"></script>
+<script src="assets/footable/js/footable.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+
+
+	jQuery(function($){
+	
+		//function dataInicio(){
+
+	var $modal = $('#editor-modal'),
+		$editor = $('#editor'),
+		$editorTitle = $('#editor-title'),
+		ft = FooTable.init('#tblDatos', {
+			columns: $.get("content/columns.json"),
+			rows: $.get("content/rows.json"),
+			editing: {
+				addRow: function(){
+					$modal.removeData('row');
+					$editor[0].reset();
+					$editorTitle.text('Agregar actividad');
+					$modal.modal('show');
+				},
+				editRow: function(row){
+					var values = row.val();
+					$editor.find('#id').val(values.id);
+					$editor.find('#actividad').val(values.actividad);
+					$editor.find('#predecesor').val(values.predecesor);
+					$editor.find('#duracion').val(values.duracion);
+					$editor.find('#duracion_choque').val(values.duracion_choque);
+					$editor.find('#costo_choque_periodo').val(values.costo_choque_periodo);
+					$editor.find('#costo_normal').val(values.costo_normal);
+					$editor.find('#costo_choque').val(values.costo_choque);
+					$modal.data('row', row);
+					$editorTitle.text('Datos de actividad #' + values.id + ' - '  + values.actividad);
+					$modal.modal('show');
+				},
+				deleteRow: function(row){
+					if (confirm('Estas seguro que deseas eliminar esta actividad?')){
+						row.delete();
+					}
+				}
+			}
+		}),
+		uid = 16;
+
+	$editor.on('submit', function(e){
+		if (this.checkValidity && !this.checkValidity()) return;
+		e.preventDefault();
+		var row = $modal.data('row'),
+			values = {
+				id: $editor.find('#id').val(),
+				actividad: $editor.find('#actividad').val(),
+				predecesor: $editor.find('#predecesor').val(),
+				duracion: $editor.find('#duracion').val(),
+				duracion_choque: $editor.find('#duracion_choque').val(),
+				costo_normal: $editor.find('#costo_normal').val(),
+				costo_choque: $editor.find('#costo_choque').val(),
+				costo_choque_periodo: $editor.find('#costo_choque_periodo').val()
+			};
+
+		if (row instanceof FooTable.Row){
+			row.val(values);
+		} else {
+			values.id = uid++;
+			ft.rows.add(values);
+		}
+
+		$modal.modal('hide');
+	});
+
+	
+});	
+/*
+	$(document).ready(function(){
+	    dataInicio();
+	});
+*/
+
+</script>
+
+<script type="text/javascript">	
+	var arr = [];
+	var tabla = "";
+	function getData(){
+		var ftbl = FooTable.get('#tblDatos');
+		ftbl.use(FooTable.Paging).size = 2000;
+		ftbl.draw();
+		var arrItem = [];
+		var arrPropLetter = [ "","A","B","C","D","E","F","G","H"];
+		var data = document.getElementById('tblDatos');
+		var canfila = 0;
+		for (var i = 0; i < data.childElementCount; i++) {
+			var seccionTabla = data.children[i];
+			if (seccionTabla.tagName === "TBODY") {
+				var canfila = seccionTabla.childElementCount;
+				for (var j = 0; j < canfila; j++) {
+							var celda = seccionTabla.children[j];
+							for (var n = 1; n < celda.childElementCount - 1; n++) {
+								arrItem[arrPropLetter[n]]=celda.children[n].innerText;
+
+							}
+						arr.push(arrItem);
+						arrItem=[];
+				}
+			}else if (seccionTabla.tagName === "THEAD") {
+				var celda = seccionTabla.children[1];
+				for (var n = 1; n < celda.childElementCount - 1; n++) {
+					arrItem[arrPropLetter[n]]=celda.children[n].innerText;
+				}
+				arr.push(arrItem);
+				arr.push(arrItem);
+				arrItem=[];
+			}
+		}
+
+		ftbl.use(FooTable.Paging).size = 7;
+		//console.log(arr);
+	}
+
+	$(document).ready(function(){
+
+
+	    $("#btnProcesar").click(function(){
+	    	//tabla = $("#tblDatos").html();
+	        getData();
+	         $.ajax({
+		        url: 'sistema/principal.php',
+		        type: 'POST',
+		        data: { arreglo : arr},
+		        //datatype: 'json',
+		        success: function (data) { 
+		        	$("html").html(data);
+		        	/*
+		        	$("#resultado").css('display', 'block');
+		        	$("#resultado").html(data);
+					$("#tblDatos").html(tabla);
+					*/
+		        },
+		        error: function (jqXHR, textStatus, errorThrown) { 
+		        	console.log(jqXHR + "---" + textStatus + "---" +  errorThrown);
+		        }
+		    });
+	    });
+	});
+
+
+
+</script>
+
+</body>
+</html>

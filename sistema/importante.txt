@@ -1,0 +1,5 @@
+-La tabla de actividades debe estar en orden alfabético
+-El sistema funciona solo con 27 actividades como máximo incluyendo los ficticios, correspondientes a las letras del alfabeto.
+-Las actividades que inician el diagrama de actividades deben tener la palabra "ninguno" como predecesor.
+-En el Excel es necesario que la columna de predecesores este llenada.
+

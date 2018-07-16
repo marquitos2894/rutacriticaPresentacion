@@ -1,0 +1,7 @@
+Intalar el servidor web:  
+WampServer2.0c.exe
+
+Activar las siguientes librerias del php:
+extension=php_xsl.dll
+extension=php_zip.dll
+
